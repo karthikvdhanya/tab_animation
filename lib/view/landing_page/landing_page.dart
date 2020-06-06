@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tab_animation/view/landing_page/courses/courses_home.dart';
 
 import 'package:tab_animation/view/landing_page/home/home.dart';
+import 'package:tab_animation/view/landing_page/profile/profile_page.dart';
 
 class LandingPage extends StatefulWidget {
   LandingPage({Key key}) : super(key: key);
@@ -12,12 +13,16 @@ class LandingPage extends StatefulWidget {
 
 class _LandingPageState extends State<LandingPage> {
   int selectedIndex = 0;
-  List<Widget> _children = [Home(), CoursesHome(), Home()];
+  PageController _pageController = PageController(initialPage: 0);
+  List<Widget> _children = [Home(), CoursesHome(), ProfilePage()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blueGrey.shade50,
-      body: _children[selectedIndex],
+      body: PageView(
+        children: _children,
+        controller: _pageController,
+      ),
       bottomNavigationBar: Container(
         padding: const EdgeInsets.all(8.0),
         decoration: BoxDecoration(
@@ -45,7 +50,8 @@ class _LandingPageState extends State<LandingPage> {
 
   void onItemTapped(int index) {
     setState(() {
-      selectedIndex = index;
+      selectedIndex =index;
     });
+   _pageController.animateToPage(index, duration: Duration(milliseconds: 100), curve: Curves.easeIn);
   }
 }

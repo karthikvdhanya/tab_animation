@@ -17,15 +17,16 @@ class DelayedListItemPublisher {
 
   void startAnimation(int limit, Duration duration) async {
     for (var i = -1; i < limit; i++) {
-      await new Future.delayed(
-         duration, () {
+      await new Future.delayed(duration, () {
         _updatePosition(i);
       });
     }
   }
 
   void _updatePosition(int position) {
-    _positionItem.add(position);
+    if (!_positionItem.isClosed) {
+      _positionItem.add(position);
+    }
   }
 
   dispose() {

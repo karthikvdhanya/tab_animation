@@ -20,8 +20,10 @@ class _CoursesAllState extends State<CoursesAll>
   void initState() {
     super.initState();
 
-    slidingBoxAnimationController =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 300));
+    slidingBoxAnimationController = AnimationController(
+        vsync: this,
+        duration:
+            Duration(milliseconds: ScreenConstants.animationDuration.floor()));
 
     /// Defining Tween animation
 
@@ -30,7 +32,7 @@ class _CoursesAllState extends State<CoursesAll>
       end: 0.0,
     ).animate(
       CurvedAnimation(
-          parent: slidingBoxAnimationController, curve: Curves.fastOutSlowIn),
+          parent: slidingBoxAnimationController, curve: Curves.easeInOut),
     );
 
     slidingBoxAnimationController.forward();
@@ -50,7 +52,6 @@ class _CoursesAllState extends State<CoursesAll>
                     slidingAnimation.value * width, 0.0, 0.0),
                 child: Center(child: CoursesTypes()),
               ),
-             
               Transform(
                 transform: Matrix4.translationValues(
                     slidingAnimation.value * width, 0.0, 0.0),
@@ -58,16 +59,13 @@ class _CoursesAllState extends State<CoursesAll>
                   child: CourseDetails(),
                 ),
               ),
-              
               Transform(
                 transform: Matrix4.translationValues(
                     slidingAnimation.value * width, 0.0, 0.0),
                 child: Center(
-                  child:CourseDetails(),
+                  child: CourseDetails(),
                 ),
               ),
-             
-             
             ],
           ),
         );

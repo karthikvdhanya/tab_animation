@@ -35,14 +35,16 @@ class _CourceTypeState extends State<CourceType> {
               ),
               Expanded(
                 child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 8),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Flexible(
-                          child: Text(
-                        widget.typeName,
-                        textAlign: TextAlign.center,
-                      ))
+                        child: Text(
+                          widget.typeName,
+                          textAlign: TextAlign.center,
+                        ),
+                      )
                     ],
                   ),
                 ),
